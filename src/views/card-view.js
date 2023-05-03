@@ -99,7 +99,9 @@ class CardView extends View {
     const point = this.state;
     const offers = point.offers.filter((it) => it.isSelected);
 
-    if(!offers.length) return ''
+    if(!offers.length) {
+      return '';
+    }
 
     return html`
       <h4 class="visually-hidden">Offers:</h4>

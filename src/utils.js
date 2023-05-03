@@ -9,8 +9,8 @@ dayjs.extend(durationPlugin);
  * @returns {string}
  */
 function formatDate(dateTime) {
-  return dayjs(dateTime).format('MMM DD')
-};
+  return dayjs(dateTime).format('MMM DD');
+}
 
 /**
  *
@@ -18,8 +18,8 @@ function formatDate(dateTime) {
  * @returns {string}
  */
 function formatTime(dateTime) {
-  return dayjs(dateTime).format('HH:mm')
-};
+  return dayjs(dateTime).format('HH:mm');
+}
 
 /**
  *
@@ -30,8 +30,8 @@ function formatTime(dateTime) {
 function formatDuration(startDateTime, endDateTime) {
   const milliseconds = dayjs(endDateTime).diff(startDateTime);
 
-  return dayjs.duration(milliseconds).format('HH[h] mm[m]')
-};
+  return dayjs.duration(milliseconds).format('HH[h] mm[m]');
+}
 
 class SafeHtml extends String {}
 

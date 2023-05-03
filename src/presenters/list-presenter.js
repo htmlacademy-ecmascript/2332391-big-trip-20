@@ -24,18 +24,18 @@ class ListPresenter extends Presenter {
     const types = offerGroups.map((it) => ({
       value: it.type,
       isSelected: it.type === point.type
-    }))
+    }));
 
     const destinations = this.model.getDestinations().map((it) => ({
       ...it,
       isSelected: it.id === point.destinationId
-    }))
+    }));
 
     const group = offerGroups.find((it) => it.type === point.type);
     const offers = group.offers.map((it) => ({
       ...it,
       isSelected: point.offerIds.includes(it.id)
-    }))
+    }));
 
     return {
       id: point.id,
@@ -51,7 +51,7 @@ class ListPresenter extends Presenter {
       offers: offers,
       isFavorite: point.isFavorite,
       isEditable: index === 0
-    }
+    };
   }
 }
 

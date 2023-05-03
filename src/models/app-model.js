@@ -15,12 +15,13 @@ class AppModel extends Model {
     this.#destinations = destinations;
     this.#offerGroups = offerGroups;
   }
+
   /**
    * @return {Array<Point>}
    */
   getPoints() {
     return this.#points.map(AppModel.adaptPointForClient);
-  };
+  }
 
   /**
    * @return {Array<Destination>}
