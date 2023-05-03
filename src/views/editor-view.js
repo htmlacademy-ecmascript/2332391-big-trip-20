@@ -2,6 +2,9 @@ import './list-view.css';
 import View from './view.js';
 import {html} from '../utils.js';
 
+/**
+ * @extends {View<PointViewState>}
+ */
 class EditorView extends View {
 
   /**

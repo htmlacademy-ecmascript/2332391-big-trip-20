@@ -1,8 +1,11 @@
+import './list-view.css';
 import CardView from './card-view.js';
 import EditorView from './editor-view.js';
 import View from './view.js';
 
-
+/**
+ * @extends {View<ListViewState>}
+ */
 class ListView extends View {
   constructor() {
     super();
@@ -15,17 +18,22 @@ class ListView extends View {
    * @override
    */
   render() {
-    const views = new Array(4).fill().map(this.createItemView);
+    const views = this.state.items.map(this.createItemView);
 
     this.replaceChildren(...views);
   }
 
-  createItemView(none, index) {
+  /**
+   * @param {PointViewState} state
+   * @return {EditorView | CardView}
+   */
+  createItemView(state) {
 
-    const view = (index === 0) ? new EditorView() : new CardView();
+    const view = state.isEditable ? new EditorView() : new CardView();
 
     view.classList.add('trip-list__item');
     view.setAttribute('role', 'listItem');
+    view.state = state;
     view.render();
 
     return view;
