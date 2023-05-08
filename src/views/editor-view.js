@@ -51,7 +51,7 @@ class EditorView extends View {
 
           ${point.types.map((it) => html`
             <div class="event__type-item">
-              <input id="event-type-${it.value}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${it.value}" ${it.isSelected? 'checked' : ''}>
+              <input id="event-type-${it.value}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${it.value}" ${it.isSelected ? 'checked' : ''}>
               <label class="event__type-label  event__type-label--${it.value}" for="event-type-${it.value}-1">${it.value}</label>
             </div>
           `)}
@@ -68,7 +68,7 @@ class EditorView extends View {
   createDestinationFieldHtml() {
     const point = this.state;
     const type = point.types.find((it) => it.isSelected);
-    const destination = point.destinations.find((it) => it.name)
+    const destination = point.destinations.find((it) => it.name);
     return html`
       <div class="event__field-group  event__field-group--destination">
         <label class="event__label  event__type-output" for="event-destination-1">

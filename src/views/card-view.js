@@ -125,7 +125,6 @@ class CardView extends View {
    * @return {SafeHtml}
    */
   createFavoriteButtonHtml() {
-    const point = this.state;
     return html`
     <button class="event__favorite-btn event__favorite-btn--active" type="button">
       <span class="visually-hidden">Add to favorite</span>
