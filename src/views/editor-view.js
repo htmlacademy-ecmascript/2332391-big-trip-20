@@ -4,8 +4,42 @@ import {html} from '../utils.js';
 
 /**
  * @extends {View<PointViewState>}
+ * @implements {EventListenerObject}
  */
 class EditorView extends View {
+
+  constructor() {
+    super();
+
+    this.addEventListener('click', this.handleClick);
+  }
+
+  /**
+  *@param {MouseEvent & {target: Element}} event
+  */
+  handleClick(event) {
+    if(event.target.closest('.event__rollup-btn')) {
+      this.notify('close');
+    }
+  }
+
+  connectedCallback() {
+    document.addEventListener('keydown', this);
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener('keydown', this);
+  }
+
+  /**
+   *
+   * @param {KeyboardEvent} event
+   */
+  handleEvent(event) {
+    if(event.key === 'Escape') {
+      this.notify('close');
+    }
+  }
 
   /**
    * @override
@@ -20,7 +54,7 @@ class EditorView extends View {
         ${this.createPriceFieldHtml()}
         ${this.createSubmitButtonHtml()}
         ${this.createResetButtonHtml()}
-        ${this.createRollupButtonHtml()}
+        ${this.createCloseButtonHtml()}
       </header>
       <section class="event__details">
         ${this.createOfferListFieldHtml()}
@@ -140,10 +174,10 @@ class EditorView extends View {
   /**
    * @return {SafeHtml}
    */
-  createRollupButtonHtml() {
+  createCloseButtonHtml() {
     return html`
       <button class="event__rollup-btn" type="button">
-        <span class="visually-hidden">Open event</span>
+        <span class="visually-hidden">Close event</span>
       </button>
     `;
   }
