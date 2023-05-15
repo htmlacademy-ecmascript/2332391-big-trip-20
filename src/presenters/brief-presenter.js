@@ -6,9 +6,15 @@ import Presenter from './presenter.js';
 class BriefPresenter extends Presenter {
   /**
    * @override
+   * @return {BriefViewState}
    */
   createViewState() {
-    // TODO: BriefViewState
+    //todo: create dynamically
+    return {
+      places: 'Amsterdam — Chamonix — Geneva',
+      dates: 'Mar 18&nbsp;—&nbsp;20',
+      cost: '1230',
+    };
   }
 }
 

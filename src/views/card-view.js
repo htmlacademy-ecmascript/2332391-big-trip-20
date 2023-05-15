@@ -8,7 +8,16 @@ class CardView extends View {
   constructor() {
     super();
 
-    this.classList.add('card-view');
+    this.addEventListener('click', this.handleClick);
+  }
+
+  /**
+   *@param {MouseEvent & {target: Element}} event
+   */
+  handleClick(event) {
+    if(event.target.closest('.event__rollup-btn')) {
+      this.notify('open');
+    }
   }
 
   /**
@@ -69,14 +78,16 @@ class CardView extends View {
    * @return {SafeHtml}
    */
   createScheduleHtml() {
+    const point = this.state;
+
     return html`
       <div class="event__schedule">
         <p class="event__time">
-          <time class="event__start-time" datetime="2019-03-18T10:30">10:30</time>
+          <time class="event__start-time" datetime="2019-03-18T10:30">${point.startTime}</time>
           —
-          <time class="event__end-time" datetime="2019-03-18T11:00">11:00</time>
+          <time class="event__end-time" datetime="2019-03-18T11:00">${point.endTime}</time>
         </p>
-        <p class="event__duration">30M</p>
+        <p class="event__duration">${point.duration}</p>
     </div>
     `;
   }
@@ -85,9 +96,11 @@ class CardView extends View {
    * @return {SafeHtml}
    */
   createPriceHtml() {
+    const point = this.state;
+
     return html`
     <p class="event__price">
-      €&nbsp;<span class="event__price-value">20</span>
+      €&nbsp;<span class="event__price-value">${point.basePrice}</span>
     </p>
     `;
   }
