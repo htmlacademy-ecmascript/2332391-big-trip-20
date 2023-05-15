@@ -20,7 +20,7 @@ class SortPresenter extends Presenter {
       isSelected: it === 'day',
       isDisabled: it === 'event' || it === 'offers'
     }));
-    return {items}
+    return {items};
   }
 }
 

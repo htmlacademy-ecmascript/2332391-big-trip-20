@@ -19,6 +19,7 @@ class SortView extends View {
       ${this.state.items.map(this.createItemHtml)}
     `;
   }
+
   /**
    * @param {SortItemViewState} state
    * @return {SafeHtml}
