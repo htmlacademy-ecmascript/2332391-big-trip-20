@@ -6,9 +6,13 @@ import Presenter from './presenter.js';
 class AddButtonPresenter extends Presenter {
   /**
    * @override
+   * @return {AddViewState}
    */
   createViewState() {
-    // TODO: AddButtonViewState
+    // TODO: create dynamically
+    return {
+      isDisabled: false
+    };
   }
 }
 
