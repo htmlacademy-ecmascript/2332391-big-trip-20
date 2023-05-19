@@ -46,8 +46,7 @@ class SortPresenter extends Presenter {
     urlParams.sort = event.target.value;
     delete urlParams.edit;
     this.setUrlParams(urlParams);
-
-  };
+  }
 }
 
 export default SortPresenter;

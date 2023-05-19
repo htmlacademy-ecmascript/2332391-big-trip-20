@@ -87,7 +87,7 @@ class ListPresenter extends Presenter {
 
     urlParams.edit = event.target.state.id;
     this.setUrlParams(urlParams);
-  };
+  }
 
   handleViewClose() {
     /**
@@ -97,7 +97,7 @@ class ListPresenter extends Presenter {
 
     delete urlParams.edit;
     this.setUrlParams(urlParams);
-  };
+  }
 
   /**
    *
@@ -109,7 +109,7 @@ class ListPresenter extends Presenter {
 
     point.isFavorite = !point.isFavorite;
     card.render();
-  };
+  }
 
   /**
    * @param {CustomEvent<HTMLInputElement> & {target: EditorView}} event
@@ -128,7 +128,7 @@ class ListPresenter extends Presenter {
         point.offers = offers;
         point.types.forEach((it) => {
           it.isSelected = it.value === field.value;
-        })
+        });
         editor.renderTypeAndRelatedFields();
         break;
       }
