@@ -1,5 +1,7 @@
 import {escape as escapeHtml} from 'he';
 import dayjs from 'dayjs';
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.css';
 import durationPlugin from 'dayjs/plugin/duration.js';
 
 dayjs.extend(durationPlugin);
@@ -42,6 +44,38 @@ function formatDuration(startDateTime, endDateTime) {
   return duration.format('mm[m]');
 }
 
+/**
+ *
+ * @param {HTMLInputElement} startDateField
+ * @param {HTMLInputElement} endDateField
+ */
+function createDatePickers(startDateField, endDateField) {
+
+  /**
+   * @type {FlatpickrOptions}
+   */
+  const options = {
+    monthSelectorType: 'static',
+    dateFormat: 'Z',
+    altInput: true,
+    altFormat: 'd m y H:i',
+    locale: {firstDayOfWeek: 1},
+    enableTime: true,
+    'time_24hr': true
+  };
+
+  const startDatePicker = flatpickr(startDateField, options);
+  const endDatePicker = flatpickr(endDateField, options);
+
+  startDatePicker.set('onChange', (dates) => endDatePicker.set('minDate', dates.at(0)));
+  endDatePicker.set('minDate', startDatePicker.selectedDates.at(0));
+
+  return () => {
+    startDatePicker.destroy();
+    endDatePicker.destroy();
+  };
+}
+
 class SafeHtml extends String {}
 
 /**
@@ -71,4 +105,4 @@ function html(strings, ...values) {
   return new SafeHtml(result);
 }
 
-export {formatDate, formatTime, formatDuration, SafeHtml, html};
+export {formatDate, formatTime, formatDuration, SafeHtml, html, createDatePickers};
