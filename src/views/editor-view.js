@@ -18,6 +18,7 @@ class EditorView extends View {
 
     this.addEventListener('click', this.handleClick);
     this.addEventListener('input', this.handleInput);
+    this.addEventListener('submit', this.handleSubmit);
   }
 
   connectedCallback() {
@@ -44,6 +45,17 @@ class EditorView extends View {
     this.notify('edit', event.target);
   }
 
+  /**
+   *
+   * @param {SubmitEvent} event
+   */
+  handleSubmit(event) {
+    const actByDefault = this.notify('save');
+
+    if(!actByDefault) {
+      event.preventDefault();
+    }
+  }
 
   /**
   *@param {MouseEvent & {target: Element}} event
@@ -55,7 +67,6 @@ class EditorView extends View {
   }
 
   /**
-   *
    * @param {KeyboardEvent} event
    */
   handleEvent(event) {
@@ -173,7 +184,7 @@ class EditorView extends View {
         <span class="visually-hidden">Price</span>
         €
       </label>
-      <input class="event__input  event__input--price" id="event-price-1" type="text" name="event-price" value="${point.basePrice}">
+      <input class="event__input  event__input--price" id="event-price-1" type="number" min="1"  name="event-price" value="${point.basePrice}">
     </div>
     `;
   }
@@ -220,7 +231,7 @@ class EditorView extends View {
     <div class="event__available-offers">
       ${point.offers.map((it) => html`
         <div class="event__offer-selector">
-          <input class="event__offer-checkbox  visually-hidden" id="event-offer-${it.id}" type="checkbox" name="event-offer-luggage" ${it.isSelected ? 'checked' : ''}>
+          <input class="event__offer-checkbox  visually-hidden" id="event-offer-${it.id}" type="checkbox" name="event-offer-luggage" value=${it.id} ${it.isSelected ? 'checked' : ''}>
           <label class="event__offer-label" for="event-offer-${it.id}">
             <span class="event__offer-title">${it.title}</span>
             +€&nbsp;
