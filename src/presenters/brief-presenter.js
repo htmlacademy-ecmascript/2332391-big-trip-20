@@ -12,7 +12,7 @@ class BriefPresenter extends Presenter {
     //todo: create dynamically
     return {
       places: 'Amsterdam — Chamonix — Geneva',
-      dates: 'Mar 18&nbsp;—&nbsp;20',
+      dates: 'Mar 18 — 20',
       cost: '1230',
     };
   }

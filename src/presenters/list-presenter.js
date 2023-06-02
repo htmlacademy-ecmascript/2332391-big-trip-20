@@ -30,7 +30,7 @@ class ListPresenter extends Presenter {
 
       items.unshift(this.createPointViewState(draftPoint));
     }
-    console.log(items);
+
     return {items};
   }
 
@@ -199,7 +199,6 @@ class ListPresenter extends Presenter {
   }
 
   /**
-   *
    * @param {CustomEvent & {target: EditorView}} event
    */
   handleViewSave(event) {
@@ -207,12 +206,17 @@ class ListPresenter extends Presenter {
     const point = editor.state;
 
     event.preventDefault();
-    this.model.updatePoint(this.serializePointViewState(point));
+
+    if (point.isDraft) {
+      this.model.addPoint(this.serializePointViewState(point));
+    } else {
+      this.model.updatePoint(this.serializePointViewState(point));
+    }
+
     this.handleViewClose();
   }
 
   /**
-   *
    * @param {CustomEvent & {target: EditorView}} event
    */
   handleViewDelete(event) {

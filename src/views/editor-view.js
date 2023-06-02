@@ -58,18 +58,18 @@ class EditorView extends View {
     }
   }
 
-    /**
+  /**
    *
    * @param {SubmitEvent} event
    */
-    handleReset(event) {
-      const point = this.state;
-      const actByDefault = this.notify(point.isDraft ? 'close' : 'delete');
+  handleReset(event) {
+    const point = this.state;
+    const actByDefault = this.notify(point.isDraft ? 'close' : 'delete');
 
-      if(!actByDefault) {
-        event.preventDefault();
-      }
+    if(!actByDefault) {
+      event.preventDefault();
     }
+  }
 
   /**
   *@param {MouseEvent & {target: Element}} event

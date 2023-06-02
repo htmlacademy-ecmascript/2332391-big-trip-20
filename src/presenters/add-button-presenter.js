@@ -10,10 +10,10 @@ class AddButtonPresenter extends Presenter {
    */
   createViewState() {
 
-     /**
-     * @type {UrlParams}
-     */
-     const urlParams = this.getUrlParams();
+    /**
+   * @type {UrlParams}
+   */
+    const urlParams = this.getUrlParams();
     // TODO: create dynamically
     return {
       isDisabled: urlParams.edit === 'draft'
@@ -27,17 +27,14 @@ class AddButtonPresenter extends Presenter {
     this.view.addEventListener('click', this.handleViewClick.bind(this));
   }
 
-  /**
-   * @param {Event & {target: {value: FilterType}}} event
-   */
-  handleViewClick(event) {
+  handleViewClick() {
     /**
      * @type {UrlParams}
      */
     const urlParams = {
       edit: 'draft'
     };
-    console.log(111);
+
     this.setUrlParams(urlParams);
   }
 }
