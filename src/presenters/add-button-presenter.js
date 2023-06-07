@@ -14,7 +14,7 @@ class AddButtonPresenter extends Presenter {
    * @type {UrlParams}
    */
     const urlParams = this.getUrlParams();
-    // TODO: create dynamically
+
     return {
       isDisabled: urlParams.edit === 'draft'
     };
