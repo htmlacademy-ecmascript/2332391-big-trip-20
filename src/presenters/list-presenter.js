@@ -138,12 +138,12 @@ class ListPresenter extends Presenter {
    *
    * @param {CustomEvent & {target: CardView}} event
    */
-  handleViewFavorite(event) {
+  async handleViewFavorite(event) {
     const card = event.target;
     const point = card.state;
 
     point.isFavorite = !point.isFavorite;
-    this.model.updatePoint(this.serializePointViewState(point));
+    await this.model.updatePoint(this.serializePointViewState(point));
     card.render();
   }
 
@@ -201,16 +201,19 @@ class ListPresenter extends Presenter {
   /**
    * @param {CustomEvent & {target: EditorView}} event
    */
-  handleViewSave(event) {
+  async handleViewSave(event) {
     const editor = event.target;
     const point = editor.state;
 
     event.preventDefault();
 
+    point.isSaving = true;
+    editor.renderSubmitButton();
+
     if (point.isDraft) {
-      this.model.addPoint(this.serializePointViewState(point));
+      await this.model.addPoint(this.serializePointViewState(point));
     } else {
-      this.model.updatePoint(this.serializePointViewState(point));
+      await this.model.updatePoint(this.serializePointViewState(point));
     }
 
     this.handleViewClose();
@@ -219,12 +222,15 @@ class ListPresenter extends Presenter {
   /**
    * @param {CustomEvent & {target: EditorView}} event
    */
-  handleViewDelete(event) {
+  async handleViewDelete(event) {
     const editor = event.target;
     const point = editor.state;
 
     event.preventDefault();
-    this.model.deletePoint(point.id);
+
+    point.isDeleting = true;
+    editor.renderResetButton();
+    await this.model.deletePoint(point.id);
     this.handleViewClose();
   }
 }
