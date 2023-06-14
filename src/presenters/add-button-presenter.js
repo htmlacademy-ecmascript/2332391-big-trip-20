@@ -9,7 +9,6 @@ class AddButtonPresenter extends Presenter {
    * @return {AddButtonViewState}
    */
   createViewState() {
-
     /**
    * @type {UrlParams}
    */
