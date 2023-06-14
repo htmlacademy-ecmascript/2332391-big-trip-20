@@ -2,7 +2,7 @@ import View from './view.js';
 import {html} from '../utils.js';
 
 /**
- * @extends {View<AddViewState>}
+ * @extends {View<AddButtonViewState>}
  */
 class AddButtonView extends View {
 
