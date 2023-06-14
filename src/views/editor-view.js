@@ -207,8 +207,11 @@ class EditorView extends View {
    * @return {SafeHtml}
    */
   createSubmitButtonHtml() {
+    const point = this.state;
+
+
     return html`
-    <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
+    <button class="event__save-btn  btn  btn--blue" type="submit" ${point.isSaving ? 'disabled' : ''}>${point.isSaving ? 'Saving...' : 'Save'}</button>
     `;
   }
 
@@ -225,7 +228,7 @@ class EditorView extends View {
     }
 
     return html`
-    <button class="event__reset-btn" type="reset">Delete</button>
+    <button class="event__reset-btn  btn" type="reset" ${point.isDeleting ? 'disabled' : ''}>${point.isDeleting ? 'Deleting...' : 'Delete'}</button>
     `;
   }
 
@@ -301,6 +304,14 @@ class EditorView extends View {
 
   renderDestination() {
     this.render('.event__section--destination', this.createDestinationHtml());
+  }
+
+  renderSubmitButton() {
+    this.render('.event__save-btn', this.createSubmitButtonHtml());
+  }
+
+  renderResetButton() {
+    this.render('.event__reset-btn', this.createResetButtonHtml());
   }
 }
 
