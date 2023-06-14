@@ -65,15 +65,33 @@ class BriefPresenter extends Presenter {
       const {offers} = offerGroups.find((it) => it.type === point.type);
       const pointCost = offers.reduce((cost, offer) => {
         if (point.offerIds.includes(offer.id)) {
+
           return cost + offer.price;
         }
 
         return cost;
       }, point.basePrice);
+
       return totalCost + pointCost;
     }, 0);
-
   }
+
+  /**
+   * @override
+   */
+  handleWindowPopState() {}
+
+  /**
+   * @override
+   */
+  addEventListeners() {
+    this.model.addEventListener('change', this.handleModelChange.bind(this));
+  }
+
+  handleModelChange() {
+    this.updateView();
+  }
+
 }
 
 export default BriefPresenter;
