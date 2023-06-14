@@ -6,7 +6,7 @@ import Presenter from './presenter.js';
 class AddButtonPresenter extends Presenter {
   /**
    * @override
-   * @return {AddViewState}
+   * @return {AddButtonViewState}
    */
   createViewState() {
 
