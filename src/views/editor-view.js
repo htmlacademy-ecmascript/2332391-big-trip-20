@@ -1,4 +1,3 @@
-import './list-view.css';
 import './editor-view.css';
 import View from './view.js';
 import {createDatePickers, html} from '../utils.js';
@@ -318,4 +317,3 @@ class EditorView extends View {
 customElements.define('editor-view', EditorView);
 
 export default EditorView;
-

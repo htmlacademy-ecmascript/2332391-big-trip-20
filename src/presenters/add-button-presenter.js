@@ -6,10 +6,9 @@ import Presenter from './presenter.js';
 class AddButtonPresenter extends Presenter {
   /**
    * @override
-   * @return {AddViewState}
+   * @return {AddButtonViewState}
    */
   createViewState() {
-
     /**
    * @type {UrlParams}
    */
@@ -34,7 +33,6 @@ class AddButtonPresenter extends Presenter {
     const urlParams = {
       edit: 'draft'
     };
-
     this.setUrlParams(urlParams);
   }
 }

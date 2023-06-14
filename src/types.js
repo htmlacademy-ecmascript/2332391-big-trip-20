@@ -27,7 +27,7 @@
  */
 
 /**
- * @typedef AddViewState
+ * @typedef AddButtonViewState
  * @prop {boolean} isDisabled
  */
 
