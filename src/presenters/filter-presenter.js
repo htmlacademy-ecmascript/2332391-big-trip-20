@@ -1,7 +1,7 @@
 import Presenter from './presenter.js';
 
 /**
- * @extends {Presenter<FilterView>}
+ * @extends {Presenter<FilterView, AppModel>}
  */
 class FilterPresenter extends Presenter {
   /**
@@ -14,7 +14,6 @@ class FilterPresenter extends Presenter {
      * @type {UrlParams}
      */
     const {filter = 'everything'} = this.getUrlParams();
-    // TODO: FilterViewState
     /**
      * @type {Array<FilterType>}
      */
@@ -23,7 +22,7 @@ class FilterPresenter extends Presenter {
     const items = types.map((it) => ({
       value: it,
       isSelected: it === filter,
-      isDisabled: false,
+      isDisabled: this.model.getPoints({filter: it}).length === 0,
     }));
 
     return {items};
