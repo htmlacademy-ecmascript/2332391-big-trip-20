@@ -317,4 +317,3 @@ class EditorView extends View {
 customElements.define('editor-view', EditorView);
 
 export default EditorView;
-
