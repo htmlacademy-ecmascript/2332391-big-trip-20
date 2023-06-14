@@ -32,7 +32,7 @@ class BriefPresenter extends Presenter {
     });
 
     if (names.length > 3) {
-      names.splice(1, names.length - 2, ' ... ');
+      names.splice(1, names.length - 2, '...');
     }
 
     return names.join(' — ');
