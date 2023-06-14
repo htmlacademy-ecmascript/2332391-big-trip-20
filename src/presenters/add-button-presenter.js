@@ -33,7 +33,6 @@ class AddButtonPresenter extends Presenter {
     const urlParams = {
       edit: 'draft'
     };
-
     this.setUrlParams(urlParams);
   }
 }
