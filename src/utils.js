@@ -7,11 +7,31 @@ import durationPlugin from 'dayjs/plugin/duration.js';
 dayjs.extend(durationPlugin);
 
 /**
- * @param {string} dateTime
+ * @param {string | dayjs.Dayjs} dateTime
+ * @param {boolean} [narrow]
  * @returns {string}
  */
-function formatDate(dateTime) {
-  return dayjs(dateTime).format('MMM DD');
+function formatDate(dateTime, narrow) {
+  return dayjs(dateTime).format(narrow ? 'D' : 'MMM DD');
+}
+
+/**
+ * @param {string} startDateTime
+ * @param {string} endDateTime
+ * @returns {string}
+ */
+function formatDateRange(startDateTime, endDateTime) {
+  const start = dayjs(startDateTime);
+  const end = dayjs(endDateTime);
+
+  if (start.isSame(end, 'day')) {
+    return formatDate(start);
+  }
+
+  return [
+    formatDate(start),
+    formatDate(end, start.isSame(end, 'month'))
+  ].join(' — ');
 }
 
 /**
@@ -105,4 +125,12 @@ function html(strings, ...values) {
   return new SafeHtml(result);
 }
 
-export {formatDate, formatTime, formatDuration, SafeHtml, html, createDatePickers};
+export {
+  formatDate,
+  formatDateRange,
+  formatTime,
+  formatDuration,
+  SafeHtml,
+  html,
+  createDatePickers
+};
